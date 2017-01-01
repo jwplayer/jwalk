@@ -6,7 +6,7 @@ Changelog
 Releases
 --------
 
-v0.1.0 (2016-12-30)
+v0.4.0 (2017-01-01)
 ~~~~~~~~~~~~~~~~~~~
 
 * First upload to PyPI.
