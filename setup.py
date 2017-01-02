@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 """Distutils setup file, used to install or test 'jwalk'."""
 import textwrap
+
 from setuptools import setup, find_packages, Extension
 
-from Cython.Build import cythonize, build_ext
 import numpy as np
+from Cython.Build import cythonize, build_ext
 
 extensions = [Extension('jwalk.walks', ['jwalk/src/walks.pyx'],
                         include_dirs=[np.get_include()])]
@@ -38,16 +39,15 @@ setup(
     tests_require=[
         'pytest',
         'pytest-flake8',
-        'tox-travis',
     ],
     extras_require={
-        'all': ['pandas', 'Cython'],
+        'all': ['pandas'],
         ':python_version=="2.7"': ['mock'],
     },
     zip_safe=False,
     include_package_data=True,
     classifiers=textwrap.dedent("""
-        Development Status :: 2 - Pre-Alpha
+        Development Status :: 4 - Beta
         Intended Audience :: Science/Research
         License :: OSI Approved :: Apache Software License
         Environment :: Console
