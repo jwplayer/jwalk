@@ -7,11 +7,11 @@ jwalk
 
 .. image:: https://readthedocs.org/projects/jwalk/badge/?version=latest
     :target: http://jwalk.readthedocs.io/en/latest/?badge=latest
-    :alt: Documentation Build Status
+    :alt: Documentation Status
 
-jwalk performs random walks on a graph and learns representations for node
-using Word2Vec. It also has options to train existing models online learning
-and specify weights.
+jwalk performs random walks on a graph and learns representations for nodes
+using Word2Vec. It also has options to train existing models online and specify
+weights.
 
 Install
 -------
