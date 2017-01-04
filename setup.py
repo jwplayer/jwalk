@@ -2,13 +2,24 @@
 """Distutils setup file, used to install or test 'jwalk'."""
 import textwrap
 
+import numpy as np
 from setuptools import setup, find_packages, Extension
 
-import numpy as np
-from Cython.Build import cythonize, build_ext
+try:
+    from Cython.Distutils import build_ext  # noqa: F401
+except ImportError:
+    USE_CYTHON = False
+else:
+    USE_CYTHON = True
 
-extensions = [Extension('jwalk.walks', ['jwalk/src/walks.pyx'],
-                        include_dirs=[np.get_include()])]
+ext = '.pyx' if USE_CYTHON else '.c'
+ext_modules = [Extension('jwalk.walks', ['jwalk/src/walks' + ext],
+                         include_dirs=[np.get_include()])]
+
+if USE_CYTHON:
+    from Cython.Build import cythonize
+
+    ext_modules = cythonize(ext_modules)
 
 with open('README.rst') as f:
     readme = f.read()
@@ -19,21 +30,20 @@ setup(
     long_description=readme,
     packages=find_packages(exclude=['tests', 'docs']),
     use_scm_version=True,
-    ext_modules=cythonize(extensions),
-    cmdclass={'build_ext': build_ext},
+    ext_modules=cythonize(ext_modules),
     author='Kamil Sindi, Nir Yungster',
     author_email='kamil@jwplayer.com, nir@jwplayer.com',
     url='https://github.com/jwplayer/jwalk',
     install_requires=[
+        'cython',
         'numpy',
-        'Cython',
         'scipy',
         'gensim',
         'joblib',
     ],
     setup_requires=[
+        'cython',
         'numpy',
-        'Cython',
         'pytest-runner',
         'setuptools_scm',
         'sphinx_rtd_theme',
