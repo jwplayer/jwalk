@@ -26,12 +26,14 @@ setup(
     url='https://github.com/jwplayer/jwalk',
     install_requires=[
         'numpy',
+        'Cython',
         'scipy',
         'gensim',
         'joblib',
     ],
     setup_requires=[
-        'cython',
+        'numpy',
+        'Cython',
         'pytest-runner',
         'setuptools_scm',
         'sphinx_rtd_theme',
