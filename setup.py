@@ -2,19 +2,18 @@
 """Distutils setup file, used to install or test 'jwalk'."""
 import textwrap
 
-import numpy as np
 from setuptools import setup, find_packages, Extension
+from setuptools.command.build_ext import build_ext as _build_ext
 
 try:
-    from Cython.Distutils import build_ext  # noqa: F401
+    from Cython.Distutils import build_ext_  # noqa: F401
 except ImportError:
     USE_CYTHON = False
 else:
     USE_CYTHON = True
 
 ext = '.pyx' if USE_CYTHON else '.c'
-ext_modules = [Extension('jwalk.walks', ['jwalk/src/walks' + ext],
-                         include_dirs=[np.get_include()])]
+ext_modules = [Extension('jwalk.walks', ['jwalk/src/walks' + ext])]
 
 if USE_CYTHON:
     from Cython.Build import cythonize
@@ -24,13 +23,24 @@ if USE_CYTHON:
 with open('README.rst') as f:
     readme = f.read()
 
+
+class build_ext(_build_ext):
+    def finalize_options(self):
+        _build_ext.finalize_options(self)
+        # Prevent numpy from thinking it is still in its setup process:
+        __builtins__.__NUMPY_SETUP__ = False
+        import numpy
+        self.include_dirs.append(numpy.get_include())
+
+
 setup(
     name='jwalk',
     description='Representational learning on graphs',
     long_description=readme,
     packages=find_packages(exclude=['tests', 'docs']),
+    cmdclass={'build_ext': build_ext},
     use_scm_version=True,
-    ext_modules=cythonize(ext_modules),
+    ext_modules=ext_modules,
     author='Kamil Sindi, Nir Yungster',
     author_email='kamil@jwplayer.com, nir@jwplayer.com',
     url='https://github.com/jwplayer/jwalk',
