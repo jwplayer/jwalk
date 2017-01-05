@@ -3,23 +3,18 @@
 import textwrap
 
 from setuptools import setup, find_packages, Extension
-from setuptools.command.build_ext import build_ext as _build_ext
-
-extensions = [Extension('jwalk.walks', ['jwalk/src/walks.pyx'])]
 
 with open('README.rst') as f:
     readme = f.read()
 
 
-class build_ext(_build_ext):
-    def finalize_options(self):
-        _build_ext.finalize_options(self)
-        try:
-            __builtins__.__NUMPY_SETUP__ = False
-        except AttributeError:
-            pass
-        import numpy as np
-        self.include_dirs.append(np.get_include())
+def ext_modules():
+    import numpy
+
+    walks_ext = Extension('jwalk.walks', ['jwalk/src/walks.pyx'],
+                          include_dirs=[numpy.get_include()])
+
+    return [walks_ext]
 
 
 setup(
@@ -27,9 +22,8 @@ setup(
     description='Representational learning on graphs',
     long_description=readme,
     packages=find_packages(exclude=['tests', 'docs']),
-    cmdclass={'build_ext': build_ext},
     use_scm_version=True,
-    ext_modules=extensions,
+    ext_modules=ext_modules,
     author='Kamil Sindi, Nir Yungster',
     author_email='kamil@jwplayer.com, nir@jwplayer.com',
     url='https://github.com/jwplayer/jwalk',
