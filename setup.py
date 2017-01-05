@@ -5,20 +5,7 @@ import textwrap
 from setuptools import setup, find_packages, Extension
 from setuptools.command.build_ext import build_ext as _build_ext
 
-try:
-    from Cython.Distutils import build_ext_  # noqa: F401
-except ImportError:
-    USE_CYTHON = False
-else:
-    USE_CYTHON = True
-
-ext = '.pyx' if USE_CYTHON else '.c'
-ext_modules = [Extension('jwalk.walks', ['jwalk/src/walks' + ext])]
-
-if USE_CYTHON:
-    from Cython.Build import cythonize
-
-    ext_modules = cythonize(ext_modules)
+extensions = [Extension('jwalk.walks', ['jwalk/src/walks.pyx'])]
 
 with open('README.rst') as f:
     readme = f.read()
@@ -40,19 +27,20 @@ setup(
     packages=find_packages(exclude=['tests', 'docs']),
     cmdclass={'build_ext': build_ext},
     use_scm_version=True,
-    ext_modules=ext_modules,
+    ext_modules=extensions,
     author='Kamil Sindi, Nir Yungster',
     author_email='kamil@jwplayer.com, nir@jwplayer.com',
     url='https://github.com/jwplayer/jwalk',
     install_requires=[
-        'cython',
+        'Cython',
         'numpy',
         'scipy',
-        'gensim',
+        'gensim>=0.13.4.1',
         'joblib',
     ],
     setup_requires=[
-        'cython',
+        'setuptools>=18.0',
+        'Cython>=0.20',
         'numpy',
         'pytest-runner',
         'setuptools_scm',
