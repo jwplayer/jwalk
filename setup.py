@@ -14,10 +14,12 @@ with open('README.rst') as f:
 class build_ext(_build_ext):
     def finalize_options(self):
         _build_ext.finalize_options(self)
-        # Prevent numpy from thinking it is still in its setup process:
-        __builtins__.__NUMPY_SETUP__ = False
-        import numpy
-        self.include_dirs.append(numpy.get_include())
+        try:
+            __builtins__.__NUMPY_SETUP__ = False
+        except AttributeError as e:
+            pass
+        import numpy as np
+        self.include_dirs.append(np.get_include())
 
 
 setup(
