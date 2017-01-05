@@ -6,6 +6,7 @@ python:
 - "3.5"
 install:
   - pip install tox-travis
+  - pip install -U setuptools
   - pip install -U Cython
 script: tox
 cache:
