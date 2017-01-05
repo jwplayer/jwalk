@@ -23,7 +23,7 @@ setup(
     long_description=readme,
     packages=find_packages(exclude=['tests', 'docs']),
     use_scm_version=True,
-    ext_modules=ext_modules,
+    ext_modules=ext_modules(),
     author='Kamil Sindi, Nir Yungster',
     author_email='kamil@jwplayer.com, nir@jwplayer.com',
     url='https://github.com/jwplayer/jwalk',
