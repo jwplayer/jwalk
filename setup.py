@@ -16,7 +16,7 @@ class build_ext(_build_ext):
         _build_ext.finalize_options(self)
         try:
             __builtins__.__NUMPY_SETUP__ = False
-        except AttributeError as e:
+        except AttributeError:
             pass
         import numpy as np
         self.include_dirs.append(np.get_include())
