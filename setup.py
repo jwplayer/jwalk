@@ -35,7 +35,7 @@ setup(
         'Cython',
         'numpy',
         'scipy',
-        'gensim>=0.13.4.1',
+        'gensim>=0.13.4',
         'joblib',
     ],
     setup_requires=[
