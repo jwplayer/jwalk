@@ -18,7 +18,7 @@ Install
 
 ::
 
-    pip install jwalk
+    pip install -U jwalk
 
 Build
 -----

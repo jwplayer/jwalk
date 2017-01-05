@@ -34,6 +34,7 @@ setup(
     author_email='kamil@jwplayer.com, nir@jwplayer.com',
     url='https://github.com/jwplayer/jwalk',
     install_requires=[
+        'setuptools_scm',
         'Cython',
         'numpy',
         'scipy',
