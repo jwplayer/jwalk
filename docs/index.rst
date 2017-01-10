@@ -1,6 +1,8 @@
 JWalk: Representational learning on graphs
 ==========================================
 
+.. image:: images/jwalk_logo.gif
+
 .. toctree::
    :maxdepth: 2
 
