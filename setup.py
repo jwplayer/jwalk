@@ -1,11 +1,32 @@
 # -*- coding: utf-8 -*-
 """Distutils setup file, used to install or test 'jwalk'."""
-import textwrap
+from __future__ import print_function
 
+import sys
+import textwrap
+import pkg_resources
 from setuptools import setup, find_packages, Extension
 
 with open('README.rst') as f:
     readme = f.read()
+
+
+def is_installed(requirement):
+    try:
+        pkg_resources.require(requirement)
+    except pkg_resources.ResolutionError:
+        return False
+    else:
+        return True
+
+
+if not is_installed('numpy'):
+    print(textwrap.dedent("""
+            Error: numpy needs to be installed first. You can install it via:
+
+            $ pip install numpy
+            """), file=sys.stderr)
+    exit(1)
 
 
 def ext_modules():
