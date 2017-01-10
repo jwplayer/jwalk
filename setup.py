@@ -49,7 +49,7 @@ setup(
     author_email='kamil@jwplayer.com, nir@jwplayer.com',
     url='https://github.com/jwplayer/jwalk',
     install_requires=[
-        'setuptools_scm',
+        'setuptools_scm>=1.15.0',
         'Cython',
         'numpy',
         'scipy',
@@ -61,7 +61,7 @@ setup(
         'Cython>=0.20',
         'numpy',
         'pytest-runner',
-        'setuptools_scm',
+        'setuptools_scm>=1.15.0',
         'sphinx_rtd_theme',
     ],
     tests_require=[

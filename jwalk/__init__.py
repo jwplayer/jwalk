@@ -2,18 +2,16 @@
 # flake8: noqa
 """jwalk library.
 
-:copyright: (c) 2016 by JW Player.
+:copyright: (c) 2017 by JW Player.
 :license: Apache 2.0, see LICENSE for more details.
 """
 import logging
 
-from setuptools_scm import get_version
-
 __title__ = 'jwalk'
 __author__ = 'Kamil Sindi, Nir Yungster'
 __license__ = 'Apache 2.0'
-__copyright__ = 'Copyright 2016 JW Player'
-__version__ = get_version(root='..', relative_to=__file__)
+__copyright__ = 'Copyright 2017 JW Player'
+# __version__ = get_version(root='..', relative_to=__file__)
 
 # Set default logging handler to avoid "No handler found" warnings.
 try:  # Python 2.7+
