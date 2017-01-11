@@ -72,6 +72,11 @@ Running tox::
 
     make test-all
 
+Blog
+----
+Read more about jwalk in our blog post here:
+https://www.jwplayer.com/blog/deepwalk-recommendations/
+
 License
 -------
 
