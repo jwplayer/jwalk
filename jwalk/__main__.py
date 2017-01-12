@@ -8,7 +8,7 @@ Prompt parameters:
   embedding-size:   dimension of word2vec embedding (default=200)
   has-header:       boolean if csv has header row
   help (-h):        argparse help
-  input (-i):       file input (edge list or scipy adjacency CSR matrix)
+  input (-i):       file input (edgelist of 2/3 cols or adjacency matrix)
   log-level (-l)    logging level (default=INFO)
   model (-m):       use a pre-existing model
   num-walks (-n):   number of of random walks per graph (default=1)
