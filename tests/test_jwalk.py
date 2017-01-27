@@ -8,6 +8,7 @@ try:
 except ImportError:
     import mock
 
+import gensim
 import numpy as np
 import scipy.sparse as sps
 
@@ -144,6 +145,13 @@ def test_online():
         res = __main__.jwalk(KARATE_EDGELIST, outfile=f.name, delimiter=' ',
                              model_path=KARATE_EMBEDDINGS)
         assert res == f.name
+
+
+def test_gensim_load():
+    with tempfile.NamedTemporaryFile() as f:
+        __main__.jwalk(KARATE_EDGELIST, outfile=f.name, delimiter=' ')
+        model = gensim.models.Word2Vec.load(f.name)
+        assert '1' in model.vocab
 
 
 def test_adjacency():
