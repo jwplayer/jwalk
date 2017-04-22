@@ -111,7 +111,7 @@ def test_build_corpus():
 
 def test_train_model():
     model = skipgram.train_model(TEST_CORPUS, size=50, window=5)
-    assert len(list(model.vocab)) == 31
+    assert len(model.wv.vocab) == 31
     assert model.window == 5
     assert model.vector_size == 50
     assert model.sg == 1
@@ -128,7 +128,7 @@ def test_train_skipgram():
         model = (skipgram
                  .train_model(f.name, size=50, window=5, word_freq=word_freq,
                               corpus_count=corpus_count))
-        assert len(list(model.vocab)) == 3
+        assert len(model.wv.vocab) == 3
         assert model.window == 5
         assert model.vector_size == 50
 

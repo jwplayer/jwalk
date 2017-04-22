@@ -33,7 +33,8 @@ def train_model(corpus, size=200, window=5, workers=3, model_path=None,
         assert os.path.isfile(model_path), "File does not exist"
         model = Word2Vec.load(model_path)
         model.build_vocab(sentences, update=True)
-        model.train(sentences)
+        model.train(sentences, total_examples=model.corpus_count,
+                    epochs=model.iter)
     else:
         model = Skipgram(sentences=sentences, size=size, window=window,
                          min_count=1, workers=workers, raw_vocab=word_freq,
