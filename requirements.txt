@@ -2,7 +2,7 @@ boto==2.45.0
 bz2file==0.98
 Cython==0.25.2
 flake8==3.2.1
-gensim==0.13.4
+gensim==1.0.1
 joblib==0.10.3
 mccabe==0.5.3
 numpy==1.11.3
