@@ -151,7 +151,7 @@ def test_gensim_load():
     with tempfile.NamedTemporaryFile() as f:
         __main__.jwalk(KARATE_EDGELIST, outfile=f.name, delimiter=' ')
         model = gensim.models.Word2Vec.load(f.name)
-        assert '1' in model.vocab
+        assert '1' in model.wv.vocab
 
 
 def test_adjacency():
