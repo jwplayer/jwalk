@@ -56,7 +56,7 @@ def walk_graph(csr_matrix, labels, walk_length=40, num_walks=1, n_jobs=1):
     """
     normalized = normalize_csr_matrix(csr_matrix)
 
-    results = (Parallel(n_jobs=n_jobs)
+    results = (Parallel(n_jobs=n_jobs, max_nbytes=None)
                (delayed(walk_random, has_shareable_memory)
                 (normalized, labels, walk_length)
                 for _ in range(num_walks)))
