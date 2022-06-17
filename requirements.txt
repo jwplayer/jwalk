@@ -5,7 +5,7 @@ flake8==3.2.1
 gensim==2.0.0
 joblib==0.10.3
 mccabe==0.5.3
-numpy==1.11.3
+numpy==1.21.0
 pluggy==0.4.0
 py==1.4.32
 pycodestyle==2.2.0
